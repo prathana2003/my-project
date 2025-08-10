@@ -1,0 +1,115 @@
+ADMIN DASHBOARD  
+1. HTML Structure Overview  
+Purpose:  
+Creates an admin dashboard layout with a header, sidebar navigation, main content area, and footer. It includes a toggle option for switching to a dark theme.  
+
+Key Elements:  
+
+<input type="checkbox" id="darkTheme" class="theme-toggle">  
+This hidden checkbox acts as the dark mode toggle.  
+
+<header>  
+This displays the dashboard title and the dark theme label with a custom checkbox.  
+
+<nav class="sidebar">  
+This is the sidebar menu with navigation links: Home, Users, Settings.  
+
+<main>  
+This is the main content area for the admin.  
+
+<footer>  
+This displays copyright information.  
+
+2. CSS Styling Breakdown  
+ELEMENT: body  
+Purpose: Defines the global font and removes the default browser margins.  
+
+Properties & Effects:  
+
+margin: 0; → This removes the default white space around the page.  
+
+font-family: Arial, sans-serif; → This sets a clean, sans-serif font style.  
+
+ELEMENT: .container  
+Purpose: Uses a grid layout to arrange the header, sidebar, main content, and footer.  
+
+Properties & Effects:  
+
+display: grid; → This enables the CSS Grid layout.  
+
+grid-template-areas → This assigns areas for the header, sidebar, main, and footer.  
+
+grid-template-columns: 200px 1fr; → The sidebar is fixed at 200px, and the main content takes the remaining space.  
+
+min-height: 100vh; → This fills the full screen height.  
+
+ELEMENT: .theme-toggle  
+Purpose: Hides the default checkbox.  
+
+Effect: display: none; → This allows for a custom checkbox style in .theme-label.  
+
+ELEMENT: header  
+Purpose: Styles the top navigation area.  
+
+Properties & Effects:  
+
+background: #4CAF50; → This sets a green background for branding.  
+
+color: white; → This provides white text for contrast.  
+
+display: flex; justify-content: space-between; align-items: center; → This positions the title on the left and the toggle on the right.  
+
+ELEMENT: .theme-label & .checkbox-box  
+Purpose: Creates a clickable label for dark mode.  
+
+Properties & Effects:  
+
+.checkbox-box → This is a 14×14px square with a white border that simulates a checkbox.  
+
+cursor: pointer; → This shows that the label is clickable.  
+
+ELEMENT: .sidebar  
+Purpose: This is the left-side navigation menu.  
+
+Properties & Effects:  
+
+background: #f0f0f0; → This sets a light gray background.  
+
+list-style-type: disc; → This adds bullet points for the menu.  
+
+Hover: Links will be underlined when hovered over for interactivity.  
+
+ELEMENT: main  
+Purpose: Displays the dashboard’s main content.  
+
+Properties: padding: 20px; → This adds space around the content.  
+
+ELEMENT: footer  
+Purpose: This serves as the bottom information bar.  
+
+Properties & Effects:  
+
+background: #4CAF50; color: white; → This matches the header styling.  
+
+text-align: center; → This centers the text.  
+
+3. DARK THEME FUNCTIONALITY  
+Mechanism:  
+This uses the :checked CSS selector to apply dark mode styles when .theme-toggle is checked.  
+
+Effects When Checked:  
+
+Backgrounds for the header, sidebar, main, and footer switch to dark (#222 / #333).  
+
+Sidebar links change to light gray (#ddd).  
+
+The checkbox box fills with white to show it is active.  
+
+LEARNING OUTCOMES:  
+How to create a CSS Grid-based admin layout.  
+
+How to custom style a checkbox for a theme toggle.  
+
+How to use the :checked sibling selector for light/dark theme switching.  
+
+How to design a responsive, consistent UI using basic CSS.
