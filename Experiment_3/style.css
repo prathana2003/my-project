@@ -1,50 +1,102 @@
-:root{
-    --bg-header: rgb(117, 228, 117);
-    --bg-footer: rgb(104, 210, 22);
-    --bg-nav: rgb(255, 255, 255);
-    --text-color: black;
-}
-input[type="checkbox"] {
-    display: none;
-}
-*{
-    margin: 10px;
-    padding: 0;
-}
-body{
-    display: grid;
-    grid-template-columns: 130px auto ;
-    grid-template-rows: 120px auto 50px;
-    height: 100vh; 
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
-header{
-    border: 1px solid black;
-    grid-column: 1 / span 2;
-    /* height: 100px; */
-    background-color: rgb(117, 228, 117);
-    
+.container {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
 }
 
-footer{
-    border: 1px solid black;
-    grid-column: 1 / span 2;
-    /* height: 50px; */
-    background-color: rgb(117, 228, 117);
+.theme-toggle {
+  display: none;
 }
 
-nav{
-    background-color: rgb(195, 190, 190);
-    border: 1px solid black;   
+header {
+  grid-area: header;
+  background: #4CAF50;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-main{
-    border: 1px solid black;   
+.theme-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
-input :checked ~ div{
-    background-color: black;
-    --bg-header: rgb(8, 9, 8);
-    --bg-footer: rgb(12, 13, 12);
-    --bg-nav: rgb(255, 255, 255);
-    --text-color: black;
+
+.checkbox-box {
+  width: 14px;
+  height: 14px;
+  border: 2px solid white;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background: #f0f0f0;
+  padding: 10px;
+}
+
+.sidebar ul {
+  list-style-type: disc; 
+  padding-left: 20px;
+}
+
+.sidebar a {
+  color: blue;
+}
+
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+main {
+  grid-area: main;
+  padding: 20px;
+}
+
+footer {
+  grid-area: footer;
+  background: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.theme-toggle:checked ~ header {
+  background: #222;
+  color: white;
+}
+
+.theme-toggle:checked ~ .sidebar {
+  background: #333;
+}
+
+.theme-toggle:checked ~ .sidebar a {
+  color: #ddd;
+}
+
+.theme-toggle:checked ~ main {
+  background: #222;
+  color: white;
+}
+
+.theme-toggle:checked ~ footer {
+  background: #222;
+  color: #ccc;
+}
+
+.theme-toggle:checked + header .checkbox-box {
+  background: white;
 }

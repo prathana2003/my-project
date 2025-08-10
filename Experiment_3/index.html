@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <input type="checkbox" id="Dark theme" >
+  <div class="container">
+    <input type="checkbox" id="darkTheme" class="theme-toggle">
     
     <header>
-        <h1> Admin Dashboard</h1>
-        
-        <label for="Dark theme">Dark Theme</label>
-    </header> 
-    <nav class ="sidebar">
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Users</a></li>
-            <li><a href="#">Settings</a></li>
-        </ul>
+      <h1>Admin Dashboard</h1>
+      <label for="darkTheme" class="theme-label">
+        <span class="checkbox-box"></span> Dark Theme
+      </label>
+    </header>
+
+    <nav class="sidebar">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Users</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
     </nav>
+
     <main>
-        <h3>Welcome Admin!...</h3>
-        <p>This is the main content area. Add charts, tables, and reports here!</p>
-    
+      <h3>Welcome, Admin!</h3>
+      <p>This is the main content area. Add charts, tables, or reports here!</p>
     </main>
+
     <footer>
-        <p>&copy; 2025 Admin Dashboard. All rights reserved.</p>
+      <p>&copy; 2025 Admin Dashboard. All rights reserved.</p>
     </footer>
+  </div>
 </body>
 </html>
