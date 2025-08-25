@@ -1,0 +1,66 @@
+HTML:
+The HTML defines the structure of the webpage.
+
+<h2> tag  
+This displays the heading “Product List” at the top of the container.
+
+<select> tag  
+The dropdown menu has the id categoryFilter.  
+It contains filter options: All, Clothing, Electronics, and Books.  
+Users can select a category from this menu to filter the product list.
+
+<div> tags  
+A main container <div> with class "container" wraps everything.  
+Inside it, another <div> with id "productList" holds individual product items.  
+Each product is inside a <div> with class "product" and a data-category attribute.  
+The data-category attribute (e.g., "clothing", "electronics", "books") helps JavaScript decide which products to show or hide.
+
+<script> tag  
+This contains the JavaScript logic that makes the filter dynamic.
+
+CSS:
+The CSS styles the page for better readability and layout.
+
+Container styling  
+The .container class has a border, padding, and a fixed width of 400px to group the product list neatly.
+
+Heading styling  
+The <h2> element has no extra margin at the top to keep it well aligned inside the container.
+
+Dropdown styling  
+The <select> element is styled with padding and spacing for a clean look.
+
+Product styling  
+Each product <div> has a border, padding, margin, and slightly rounded corners (border-radius: 5px).  
+This makes each product look like a separate card.
+
+Overall page styling  
+The body uses Arial font and margin for spacing, giving the webpage a simple, clean appearance.
+
+JavaScript:
+The JavaScript implements the filtering functionality.
+
+Access elements  
+getElementById("categoryFilter") gets the dropdown element.  
+querySelectorAll(".product") selects all product <div> elements.
+
+Event Listener  
+An event listener is added to the dropdown (filter.addEventListener("change", ...)).  
+It runs whenever the user changes the selected option.
+
+Filtering logic  
+It gets the value of the selected category.  
+For each product:  
+If the selected category is "all" or matches the product’s data-category, the product is shown (display = "block").  
+Otherwise, the product is hidden (display = "none").
+
+Dynamic updates  
+The product list updates instantly in real time as the dropdown selection changes.
+
+Learning Outcomes:  
+I learned how to use data attributes (data-category) to categorize elements.  
+I practiced using getElementById and querySelectorAll to access HTML elements.  
+I understood how event listeners make webpages interactive.  
+I learned how to show and hide elements dynamically using JavaScript.  
+I improved my skills in combining HTML, CSS, and JavaScript for interactive web apps.  
+I practiced applying CSS to make elements look organized and user-friendly.
