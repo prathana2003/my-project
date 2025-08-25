@@ -1,0 +1,42 @@
+HTML:
+<h2> tag  
+Displays the heading "SVG Drawing Tool" at the top of the page.
+
+<div> tag  
+Serves as a container with borders and padding to hold the heading and the drawing area.
+
+<svg> tag  
+Acts as the main drawing canvas where the user can draw with the mouse. It has a fixed width and height and allows drawing scalable vector paths.
+
+<script> tag  
+Holds the JavaScript code that powers the drawing function.
+
+CSS:
+Container styling  
+The container has a solid border and padding to keep the drawing area organized.
+
+SVG styling  
+The SVG has a border, light background, and a crosshair cursor to show drawing capability.
+
+Page styling  
+The font family is set to Arial for a clean look.
+
+JavaScript:
+Access elements  
+The SVG element is accessed using getElementById.
+
+Drawing logic  
+On mousedown, a new <path> element is created with a starting point (M x y).
+On mousemove, the d attribute of the path is updated to add line commands (L x y) as the mouse moves.
+On mouseup or mouseleave, drawing stops.
+
+Path styling  
+Each path has a blue stroke, a width of 2, and no fill to ensure visibility.
+
+Learning Outcomes:
+1.Learned how to use the <svg> tag to create scalable drawing areas.
+2.Practiced using DOM manipulation to create SVG paths dynamically.
+3.Understood how to use mouse events (mousedown, mousemove, mouseup, mouseleave) for interactive features.
+4.Improved knowledge of the path element (<path>) and its d attribute in SVG.
+5.Learned how to style SVG elements with stroke, fill, and width.
+6.Gained experience in combining HTML, CSS, and JavaScript to build an interactive drawing tool.
