@@ -1,32 +1,72 @@
-deploy:
-  needs: build-and-test
-  runs-on: ubuntu-latest
-  if: github.ref == 'refs/heads/main'
+name: CI/CD Pipeline - Experiment 26
 
-  steps:
-    # Checkout the code
-    - name: Checkout repository
-      uses: actions/checkout@v4
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-    # Set up Node.js
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
 
-    # Install dependencies in subfolder
-    - name: Install dependencies
-      working-directory: ./experiment-26
-      run: npm install
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    # Build project in subfolder
-    - name: Build project
-      working-directory: ./experiment-26
-      run: npm run build
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-    # Deploy build folder
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./experiment-26/build
+      # Step 3: Install dependencies in subfolder
+      - name: Install dependencies
+        working-directory: ./experiment-26
+        run: npm ci
+
+      # Step 4: Run tests in subfolder
+      - name: Run tests
+        working-directory: ./experiment-26
+        run: npm test
+
+      # Step 5: Build the app in subfolder
+      - name: Build the app
+        working-directory: ./experiment-26
+        run: npm run build
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # Step 3: Install dependencies in subfolder
+      - name: Install dependencies
+        working-directory: ./experiment-26
+        run: npm ci
+
+      # Step 4: Build the project in subfolder
+      - name: Build project
+        working-directory: ./experiment-26
+        run: npm run build
+
+      # Step 5: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./experiment-26/build
