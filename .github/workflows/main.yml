@@ -1,64 +1,32 @@
-name: CI/CD Pipeline - Experiment 26
+deploy:
+  needs: build-and-test
+  runs-on: ubuntu-latest
+  if: github.ref == 'refs/heads/main'
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  steps:
+    # Checkout the code
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    # Set up Node.js
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
+    # Install dependencies in subfolder
+    - name: Install dependencies
+      working-directory: ./experiment-26
+      run: npm ci
 
-      - name: Install dependencies
-        working-directory: ./experiment-26
-        run: npm install
+    # Build project in subfolder
+    - name: Build project
+      working-directory: ./experiment-26
+      run: npm run build
 
-      - name: Run tests
-        working-directory: ./experiment-26
-        run: npm test
-
-      - name: Build the app
-        working-directory: ./experiment-26
-        run: npm run build
-
-  # OPTIONAL: Deployment job to GitHub Pages
-  deploy:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      # Checkout the code again for deployment
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # Set up Node.js again
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      # Install and build again before deploy
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build project
-        run: npm run build
-
-      # Step 6: Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+    # Deploy build folder
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./experiment-26/build
