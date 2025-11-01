@@ -1,5 +1,6 @@
-name: CI/CD Pipeline - Experiment 26
+name: CI/CD Pipeline
 
+# Trigger workflow on push to main branch
 on:
   push:
     branches:
@@ -10,63 +11,64 @@ on:
 
 jobs:
   build-and-test:
+    name: Install, Test & Build
     runs-on: ubuntu-latest
 
-    steps:
-      # Step 1: Checkout repository
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # Step 2: Set up Node.js
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      # Step 3: Install dependencies in subfolder
-      - name: Install dependencies
+    defaults:
+      run:
         working-directory: ./CloudDeployment/experiment-26
+
+    steps:
+      # Checkout code from repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Specify Node.js version
+
+      # Install dependencies
+      - name: Install dependencies
         run: npm install
 
-      # Step 4: Run tests in subfolder
+      # Run tests
       - name: Run tests
-        working-directory: ./CloudDeployment/experiment-26
         run: npm test
 
-      # Step 5: Build the app in subfolder
-      - name: Build the app
-        working-directory: ./CloudDeployment/experiment-26
+      # Build project
+      - name: Build project
         run: npm run build
 
   deploy:
-    needs: build-and-test
+    name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main'  # Only deploy from main branch
+
+    defaults:
+      run:
+        working-directory: ./CloudDeployment/experiment-26
 
     steps:
-      # Step 1: Checkout repository
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # Step 3: Install dependencies in subfolder
       - name: Install dependencies
-        working-directory: ./CloudDeployment/experiment-26
-        run: npm ci
+        run: npm install
 
-      # Step 4: Build the project in subfolder
       - name: Build project
-        working-directory: ./CloudDeployment/experiment-26
         run: npm run build
 
-      # Step 5: Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      # Deploy to GitHub Pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v5
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./CloudDeployment/experiment-26/build
+          publish_dir: ./build  # Replace if your build folder is different
