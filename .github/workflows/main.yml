@@ -26,7 +26,7 @@ jobs:
       # Step 3: Install dependencies in subfolder
       - name: Install dependencies
         working-directory: ./experiment-26
-        run: npm ci
+        run: npm install
 
       # Step 4: Run tests in subfolder
       - name: Run tests
