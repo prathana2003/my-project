@@ -17,7 +17,7 @@ deploy:
     # Install dependencies in subfolder
     - name: Install dependencies
       working-directory: ./experiment-26
-      run: npm ci
+      run: npm install
 
     # Build project in subfolder
     - name: Build project
